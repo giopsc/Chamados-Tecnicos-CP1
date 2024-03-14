@@ -37,23 +37,21 @@ public class TecnicoResource {
         return repo.save(tecnico);
     }
 
-/*
     @Transactional
     @PostMapping(value = "/{id}/especialidade")
-    public Especialidade addEspecialidade(@PathVariable Long id, @RequestBody Especialidade a) {
+    public Tecnico addEspecialidade(@PathVariable Long id, @RequestBody Especialidade a) {
 
-        Especialidade especialidade = repo.findById(id).orElseThrow();
+        Tecnico tecnico = repo.findById(a.getId()).orElseThrow();
 
         if (Objects.isNull(a)) return null;
 
         if (Objects.nonNull(a.getId())) {
-            Especialidade especialidade = EspecialidadeRepository.findById(a.getId()).orElseThrow();
-            especialidade.getEspecialidade().add(especialidade);
-            return especialidade;
+            Especialidade especialidade = especialidadeRepository.findById(id).orElseThrow();
+            tecnico.getEspecialidades().add(especialidade);
+            return tecnico;
         }
-            tecnico.getEspecialidade().add(a);
-            return especialidade;
+            tecnico.getEspecialidades().add(a);
+            return tecnico;
     }
 
-*/
 }

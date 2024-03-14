@@ -36,17 +36,17 @@ public class SolicitanteResource {
         return repo.findById(id).orElseThrow();
     }
 
-/*    @GetMapping(value = "/{id}/endereco")
+    @GetMapping(value = "/{id}/endereco")
     public Solicitante findSolicitante(@PathVariable Long id) {
-        Endereco endereco = repo.findById(id).orElseThrow();
+        Endereco endereco = enderecoRepository.findById(id).orElseThrow();
         return endereco.getSolicitante();
-    }*/
-/*    @GetMapping(value = "/{id}/telefone")
-    public Set<Telefone> findTelefone(@PathVariable Long id) {
-        Solicitante solicitante = repo.findById(id).orElseThrow();
-        return solicitante.getTelefone();
-    }*/
-/*    @Transactional
+    }
+    @GetMapping(value = "/{id}/telefone")
+    public Solicitante findTelefone(@PathVariable Long id) {
+        Telefone telefone = telefoneRepository.findById(id).orElseThrow();
+        return telefone.getSolicitante();
+    }
+    @Transactional
     @PostMapping(value = "/{id}/endereco")
     public Solicitante addEndereco(@PathVariable Long id, @RequestBody Endereco a) {
 
@@ -56,11 +56,9 @@ public class SolicitanteResource {
 
         if (Objects.nonNull(a.getId())) {
             Endereco endereco = enderecoRepository.findById(a.getId()).orElseThrow();
-            endereco.getEndereco().add(endereco);
+            endereco.setSolicitante(solicitante);
             return solicitante;
         }
-
-        solicitante.getEndereco().add(a);
 
         return solicitante;
     }
@@ -74,14 +72,12 @@ public class SolicitanteResource {
 
         if (Objects.nonNull(a.getId())) {
             Telefone telefone = telefoneRepository.findById(a.getId()).orElseThrow();
-            telefone.getTelefone().add(telefone);
+            telefone.setSolicitante(solicitante);
             return solicitante;
         }
 
-        solicitante.getTelefone().add(a);
-
         return solicitante;
-    }*/
+    }
 
     @Transactional
     @PostMapping
